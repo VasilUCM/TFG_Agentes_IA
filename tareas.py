@@ -3,53 +3,77 @@ from crewai import Task
 def tarea_analisis_entorno(agente):
     return Task(
         description="""
-        REGLA DE ORO: Utiliza tu conocimiento experto sobre el mercado internacional y la macroeconomía japonesa para realizar este análisis sobre el Aceite de Oliva Virgen Extra (AOVE).
+        Utiliza tus herramientas para leer los documentos base y buscar datos macroeconómicos actualizados sobre Japón y el aceite de oliva.
         
-        EJECUTA EL SIGUIENTE ALGORITMO SECUENCIAL:
-        Fase 1: Extrae datos empíricos para las 6 dimensiones PESTEL del mercado japonés enfocado al Aceite de Oliva. Asigna a cada variable una puntuación del 1 (Amenaza) al 5 (Oportunidad) y calcula la media matemática.
-        Fase 2: Aplica el modelo CAGE de Ghemawat. Compara España y Japón en distancia Cultural, Administrativa, Geográfica y Económica. 
-        Fase 2.1: Basándote en variables socioculturales, determina si Japón es una Cultura de "Alto Contexto" o "Bajo Contexto" (Hall, 1976).
-        Fase 3: Aplica las 5 Fuerzas de Porter para el aceite de oliva en Japón, asignando una intensidad (Baja, Media, Alta) debidamente justificada.
+        ALGORITMO DE EJECUCIÓN (Aplica rigor APA 7 en cada paso):
+        1. PESTEL: Extrae 3 variables empíricas por cada una de las 6 dimensiones. Puntúa de 1 a 5. Justifica exhaustivamente el impacto.
+        2. CAGE: Analiza las 4 distancias. Determina si es Alto/Bajo Contexto (Hall, 1976) y explica por qué.
+        3. PORTER: Evalúa las 5 fuerzas y explica la dinámica competitiva.
         """,
-        expected_output="Informe estructurado con: 1. PESTEL Ponderado con nota media, 2. CAGE y clasificación de Hall, 3. Matriz de Porter.",
-        agent=agente
+        expected_output="""Un informe académico denso que contenga: 
+        1. Análisis PESTEL justificado y citado (Autor, Año). 
+        2. Análisis CAGE y Hall justificados. 
+        3. 5 Fuerzas de Porter explicadas. 
+        *REGLA*: Formato estricto [Variable/Nota] -> [Justificación profunda] -> [Cita APA 7].""",
+        agent=agente,
+        output_file="1_informe_analista_limpio.md"
     )
 
 def tarea_auditoria_operativa(agente):
     return Task(
         description="""
-        REGLA DE ORO: Basa tu auditoría en tu conocimiento técnico sobre comercio exterior, aduanas japonesas y logística internacional. Lee detenidamente el informe del Analista antes de empezar.
+        Lee los hallazgos del Analista. Usa tus herramientas para buscar en los documentos locales e internet regulaciones japonesas reales.
         
-        EJECUTA EL SIGUIENTE ÁRBOL DE DECISIÓN:
-        Fase 1: Busca y detalla el arancel aplicable bajo el Tratado de Libre Comercio (EPA UE-Japón) para la exportación de AOVE.
-        Fase 2: Rastrea Barreras No Arancelarias (NTMs) del sector agroalimentario en Japón y clasifícalas en [BARRERAS INTRÍNSECAS] (ej. LMR, pesticidas) y [BARRERAS EXTRÍNSECAS] (ej. normativas de etiquetado JAS, embalaje).
-        Fase 3: Elabora una Matriz de Fricción Operativa identificando qué elementos logísticos generarán "Escalada de Precios" (ej. cadena de frío, controles sanitarios, tiempos de aduana en Yokohama/Tokio).
+        ALGORITMO DE EJECUCIÓN (Aplica rigor APA 7):
+        1. ARANCEL: Especifica el código HS y el arancel exacto bajo el EPA UE-Japón.
+        2. NTMs: Identifica y justifica las [BARRERAS INTRÍNSECAS] y [BARRERAS EXTRÍNSECAS].
+        3. ESCALADA Y LOGÍSTICA: Selecciona Incoterm para cadena de frío. Elabora Matriz de Escalada de Precios.
         """,
-        expected_output="Matriz de riesgos logísticos y clasificación estricta de barreras Intrínsecas/Extrínsecas.",
-        agent=agente
+        expected_output="""Un informe técnico auditor que contenga:
+        1. Datos arancelarios.
+        2. Clasificación de NTMs.
+        3. Matriz de Escalada de Precios e Incoterm.
+        *REGLA*: Cada decisión justificada causalmente y referenciada en APA 7 (Autor, Año).""",
+        agent=agente,
+        output_file="2_informe_operaciones_limpio.md"
     )
 
 def tarea_marketing(agente):
     return Task(
         description="""
-        Lee los outputs de los Agentes Analista y Operaciones. Formula el plan comercial bajo la teoría de estandarización vs adaptación:
-        1. PRODUCTO: Basándote en las NTMs del Agente de Operaciones, decide de forma vinculante si la adaptación debe ser Intrínseca o si basta con Extrínseca (Packaging).
-        2. PRECIO: Lee la Escalada de Precios de Operaciones. Justifica teóricamente la aplicación de un "Precio de Prestigio (Skimming)" para absorber esos costes logísticos. Tienes estrictamente prohibido usar una estrategia de penetración.
-        3. DISTRIBUCIÓN: Propón un canal Selectivo o Exclusivo (ej. canal HORECA premium o tiendas gourmet Depachika).
-        4. PROMOCIÓN: Lee la clasificación de Hall del Analista. Si es "Alto Contexto", diseña un mensaje visual, sutil y centrado en la confianza y el Efecto País de Origen.
+        Lee las restricciones de PESTEL, CAGE, NTMs y Costes de los agentes anteriores.
+        
+        ALGORITMO DE EJECUCIÓN (Aplica rigor APA 7):
+        1. SEGMENTACIÓN: Define un nicho justificado por la distancia cultural.
+        2. 4Ps y COO: 
+           - Justifica la adaptación del Producto por las NTMs detectadas.
+           - Justifica el Precio basándote en la Escalada de Precios operativa.
+           - Justifica el Canal para neutralizar a las Shoshas.
+           - Justifica el mensaje promocional basándote en el Efecto País de Origen y contexto cultural.
         """,
-        expected_output="Plan Comercial (4Ps) donde CADA variable esté justificada basándose explícitamente en las restricciones operativas de los agentes previos.",
-        agent=agente
+        expected_output="""Un Plan Go-to-Market que contenga:
+        1. Segmentación STP.
+        2. Políticas de las 4Ps.
+        *REGLA*: CADA política referenciando una restricción de los agentes previos, con cita APA 7.""",
+        agent=agente,
+        output_file="3_informe_marketing_limpio.md"
     )
 
 def tarea_decision_ceo(agente):
     return Task(
         description="""
-        Lee todos los reportes de los agentes 1, 2 y 3. Ejecuta la consolidación final:
-        Fase 1: Construye una Matriz TOWS cruzando las Fortalezas/Debilidades del AOVE Español Premium con las Oportunidades/Amenazas detectadas en Japón por los agentes anteriores. Formula estrategias CAME.
-        Fase 2: Pasa el triple filtro estratégico (S.A.F. - Idoneidad, Factibilidad, Aceptabilidad), indicando expresamente [Cumple] o [No Cumple] en cada una.
-        Fase 3: Emite el DICTAMEN VINCULANTE FINAL según Rumelt (Diagnóstico, Política Rectora, Acciones). Finaliza obligatoriamente el documento con "## RESOLUCIÓN FINAL: GO" o "## RESOLUCIÓN FINAL: NO-GO".
+        Sintetiza de forma ejecutiva y académica los informes de todo el equipo.
+        
+        ALGORITMO DE EJECUCIÓN (Aplica rigor APA 7):
+        1. TOWS: Construye estrategias CAME cruzando los datos reportados.
+        2. S.A.F.: Somete la estrategia al triple filtro justificando [Cumple] o [No Cumple].
+        3. DICTAMEN RUMELT: Redacta Diagnóstico, Política Rectora y Acciones Coherentes.
         """,
-        expected_output="Dictamen corporativo final con Matriz TOWS, evaluación del Filtro S.A.F. y resolución clara de GO/NO-GO.",
-        agent=agente
+        expected_output="""Dictamen final corporativo que contenga:
+        1. Matriz TOWS/CAME justificada.
+        2. Evaluación S.A.F. explicada.
+        3. Veredicto de Rumelt y "## RESOLUCIÓN FINAL: GO" o "NO-GO".
+        *REGLA*: Profundidad analítica citada según APA 7.""",
+        agent=agente,
+        output_file="4_dictamen_ceo_limpio.md"
     )
